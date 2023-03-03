@@ -2,13 +2,18 @@ import User from "../models/user.model";
 import express, { Request, Response } from "express";
 
 export interface IUserService {
-    postUserCredentials(user: User): Promise<void>;
+    postSignUpCredentials(user: User): Promise<void>;
+    postSignInCredentials(user: User): Promise<void>;
 }
 
 export interface IUserController {
-    postUserCredentials(req: Request, res: Response): Promise<void>;
+    postSignUpCredentials(req: Request, res: Response): Promise<void>;
+    postSignInCredentials(req: Request, res: Response): Promise<void>;
 }
 
+
 export interface IUserRepository {
-    postUserCredentials(user: User): Promise<void>;
+    postSignUpCredentials(user: User): Promise<void>;
+    postSignInCredentials(user: User): Promise<void>;
+
 }

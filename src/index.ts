@@ -17,24 +17,12 @@ const userRepository = container.resolve(UserRepository);
 
 //sign up (post) 
 app.post("/signup", (req: Request, res: Response) => {
-  userController.postUserCredentials(req, res)
-})
+  userController.postSignUpCredentials(req, res)
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.post("/login", (req: Request, res: Response) => {
+  userController.postSignInCredentials(req, res)
+});
 
 
 

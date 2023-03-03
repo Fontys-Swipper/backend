@@ -6,7 +6,10 @@ export default class UserRepository implements IUserRepository {
     constructor() {}
 
 
-public async postUserCredentials(user: User): Promise<void> {
+public async postSignUpCredentials(user: User): Promise<void> {
+    
+}
+public async postSignInCredentials(user: User): Promise<void> {
     
 }
 

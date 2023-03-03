@@ -13,12 +13,19 @@ export class UserService implements IUserService {
   constructor(
     @inject("IUserRepository") private userRepository: IUserRepository
   ) {
-    this.postUserCredentials = this.postUserCredentials.bind(this);
+    this.postSignUpCredentials = this.postSignUpCredentials.bind(this);
+    this.postSignInCredentials = this.postSignInCredentials.bind(this);
   }
 
- public async postUserCredentials(user: User): Promise<void> {
+ public async postSignUpCredentials(user: User): Promise<void> {
     
   }
+
+  public async postSignInCredentials(user: User): Promise<void> {
+    
+  }
+
+
 
 
 

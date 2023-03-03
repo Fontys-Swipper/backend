@@ -10,15 +10,18 @@ container.register("IUserService", {
   @injectable()
   export class UserController implements IUserController {
     constructor(@inject("IUserService") private userService: UserService) {
-        this.postUserCredentials = this.postUserCredentials.bind(this);
+        this.postSignUpCredentials = this.postSignUpCredentials.bind(this);
+        this.postSignInCredentials = this.postSignInCredentials.bind(this);
     }
 
-public async postUserCredentials(req: Request, res: Response): Promise<void> {
+public async postSignUpCredentials(req: Request, res: Response): Promise<void> {
+
+}
+
+public async postSignInCredentials(req: Request, res: Response): Promise<void> {
 
 }
 
 
 
-
-
-  }
+}
