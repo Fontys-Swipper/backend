@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import express, { Request, Response } from "express";
 import { container } from "tsyringe";
 import { UserController } from "./controllers/user.controller";
