@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import express, { Request, Response } from "express";
 import { container } from "tsyringe";
 import { UserController } from "./controllers/user.controller";
@@ -8,14 +9,14 @@ const app = express();
 app.use(express.json());
 
 
- 
+
 const userController = container.resolve(UserController);
 const userService = container.resolve(UserService);
 const userRepository = container.resolve(UserRepository);
 
- 
 
-//sign up (post) 
+
+//sign up (post)
 app.post("/signup", (req: Request, res: Response) => {
   userController.postSignUpCredentials(req, res)
 });
