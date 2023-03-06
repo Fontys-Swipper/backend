@@ -1,9 +1,9 @@
+import "reflect-metadata"
 import express, { Request, Response } from "express";
 import { container } from "tsyringe";
 import { UserController } from "./controllers/user.controller";
 import UserRepository from "./repositories/user.repository";
 import { UserService } from "./services/user.service";
-
 const app = express();
 app.use(express.json());
 
@@ -45,11 +45,11 @@ app.post("/login", (req: Request, res: Response) => {
 
 
 
-// maakt een  "/home" route om "Hallo dit is een api route" te sturen naar de browser
+// makes a "/home" route that sends "This is a api route" to the browser
 app.get("/home", (req: Request, res: Response ) => {
-  res.status(200).send("<h1>Dit is een api route</h1>");
+  res.status(200).send("<h1>This is a api route</h1>");
 });
 
 
-//vertelt express dat de api op port 3001 gehost wordt
+// tells express that the api gets hosted on port 3001
 app.listen(3001, () => console.log("app listening on port 3001"));
