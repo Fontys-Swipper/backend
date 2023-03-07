@@ -14,10 +14,15 @@ export class ListingService implements IListingService {
     @inject("IListingRepository") private listingRepository: IListingRepository
   ) {
     this.postListing = this.postListing.bind(this);
+    this.deleteListing = this.deleteListing.bind(this);
    }
 public async postListing(listing: Listing):Promise<void>{
   
     return await this.listingRepository.postListing(listing)
+}
+
+public async deleteListing(listing: Listing): Promise<void> {
+
 }
 
 }

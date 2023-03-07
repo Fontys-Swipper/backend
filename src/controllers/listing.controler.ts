@@ -13,6 +13,7 @@ export class ListingController implements IListingController {
     @inject("IListingService") private listingService: ListingService
   ) {
     this.postListing = this.postListing.bind(this);
+    this.deleteListing = this.deleteListing.bind(this);
   }
 
   public async postListing(req: Request, res: Response): Promise<void> {
@@ -21,5 +22,9 @@ export class ListingController implements IListingController {
      
     this.listingService.postListing(listing);
     res.status(200).send();
+  }
+
+  public async deleteListing(req: Request, res: Response): Promise<void> {
+    
   }
 }

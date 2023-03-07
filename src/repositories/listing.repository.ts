@@ -14,6 +14,9 @@ public async postListing(listing: Listing): Promise<void> {
     
 }
 
+public async deleteListing(listing: Listing): Promise<void> {
+    
+}
 
 
 }

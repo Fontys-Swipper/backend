@@ -54,6 +54,9 @@ app.post("/postlisting", async (req: Request, res: Response) => {
 //Listing update (put)
 
 //Listing delete (delete)
+app.delete("/deletelisting", async (req: Request, res: Response) => {
+  return await listingController.deleteListing(req, res)
+});
 
 //Listing display (get)
 
