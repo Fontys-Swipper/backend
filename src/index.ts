@@ -33,32 +33,22 @@ app.post("/login", async (req: Request, res: Response) => {
 });
 
 
-//Listing (post)
-
-app.post("/postlisting", async (req: Request, res: Response) => {
+app.post("/listing/post", async (req: Request, res: Response) => {
   return await listingController.postListing(req, res)
-  
 })
-
-
-
-
-
-
-
-
-
-
-
 
 //Listing update (put)
 
-//Listing delete (delete)
-app.delete("/deletelisting", async (req: Request, res: Response) => {
+
+
+
+app.delete("/listing/delete", async (req: Request, res: Response) => {
   return await listingController.deleteListing(req, res)
 });
 
-//Listing display (get)
+app.get("/listing/get", async (req: Request, res: Response) => {
+    return await listingController.getListing(req, res)
+});
 
 //favorite list (post)
 
