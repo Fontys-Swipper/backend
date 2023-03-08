@@ -18,6 +18,8 @@ zorg dat je node.js hebt geinstalleerd OP JE LAPTOP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 (terminal)	npm install @types/express
 (terminal)	npm install @types/node
 
+of npm install
+
 
 
 in het bestand index.ts :  
