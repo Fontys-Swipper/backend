@@ -20,7 +20,7 @@ export class ListingController implements IListingController {
   public async postListing(req: Request, res: Response): Promise<void> {
 
      const listing = req.body;
-
+//stiekeme test
     this.listingService.postListing(listing);
     res.status(200).send();
   }
