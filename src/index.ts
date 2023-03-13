@@ -35,11 +35,12 @@ app.post("/login", async (req: Request, res: Response) => {
 
 app.post("/listing/post", async (req: Request, res: Response) => {
   return await listingController.postListing(req, res)
-})
+});
 
 //Listing update (put)
-
-
+app.put{"/listing/update", async (req: Request, res: Response) => {
+  return await listingController.updateListing(req, res)
+}};
 
 
 app.delete("/listing/delete", async (req: Request, res: Response) => {
