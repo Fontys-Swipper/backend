@@ -15,6 +15,7 @@ export class ListingService implements IListingService {
   ) {
     this.postListing = this.postListing.bind(this);
     this.deleteListing = this.deleteListing.bind(this);
+    this.updateListing = this.updateListing.bind(this);
    }
 public async postListing(listing: Listing):Promise<void>{
 
@@ -28,4 +29,9 @@ public async deleteListing(listing: Listing): Promise<void> {
 public async getListing(): Promise<Listing> {
     return await this.listingRepository.getListing();
 }
+
+public async updateListing(listing: Listing): Promise<void> {
+
+}
+
 }

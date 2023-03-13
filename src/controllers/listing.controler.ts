@@ -15,6 +15,7 @@ export class ListingController implements IListingController {
     this.postListing = this.postListing.bind(this);
     this.deleteListing = this.deleteListing.bind(this);
     this.getListing = this.getListing.bind(this);
+    this.updateListing = this.updateListing.bind(this);
   }
 
   public async postListing(req: Request, res: Response): Promise<void> {
@@ -38,5 +39,9 @@ export class ListingController implements IListingController {
     } catch (error) {
       res.status(500).send({ error: 'Wollah dit gaat mis' });
     }
+  }
+
+  public async updateListing(req: Request, res: Response): Promise<void> {
+    
   }
 }

@@ -25,7 +25,13 @@ public async deleteListing(listing: Listing): Promise<void> {
         }
         return listing;
     }
+    
+public async updateListing(listing: Listing): Promise<void> {
+    
+}
 
 }
+
+
 
 
