@@ -7,15 +7,14 @@ import User from './models/user';
 const app = express();
 
 mongoose
-  .connect('mongodb+srv://Backend:aTLOpFcGdeLuaRlG', { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect('mongodb+srv://Backend:aTLOpFcGdeLuaRlG')
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error(err));
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
 
-const connectionString = "mongodb+srv://Backend:aTLOpFcGdeLuaRlG@<your-cluster-url>/test?retryWrites=true&w=majority";
-const client = new MongoClient(connectionString);
+//const connectionString = "mongodb+srv://Backend:aTLOpFcGdeLuaRlG@<your-cluster-url>/test?retryWrites=true&w=majority";
 
 export default class UserRepository implements IUserRepository {
     constructor() {}
@@ -73,11 +72,28 @@ public async getUser(): Promise<User> {
       res.status(500).json({ message: 'Server Error' });
     }
   });
-  
+    
 }
     
 public async updateUser(user: User): Promise<void> {
-    
+  app.put('/users/:id', async (req: Request, res: Response) => {
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        req.params.id,
+        { username: req.body.username, password: req.body.password },
+        { new: true }
+      );
+  
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      res.status(200).json({ message: 'User updated', updatedUser });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  });
 }
 
 }
