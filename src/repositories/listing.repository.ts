@@ -1,11 +1,15 @@
 import { IListingRepository } from "../interfaces/listing.interface";
-import Listing from "../models/listing.model";
+import { Document, Model } from 'mongoose';
+
+import IListing from "../models/listing.model";
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
 
 const app = express();
+
+
 
 mongoose
   .connect('mongodb+srv://Backend:aTLOpFcGdeLuaRlG')
@@ -14,6 +18,7 @@ mongoose
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
+  
 
 export default class ListingRepository implements IListingRepository {
     constructor() {
@@ -22,7 +27,7 @@ export default class ListingRepository implements IListingRepository {
 
 
 
-public async postListing(listing: Listing): Promise<void> {
+public async postListing(listing: IListing): Promise<void> {
     app.post('/listings', async (req: Request, res: Response) => {
         try {
             const savedListing = await listing.save();
@@ -35,7 +40,7 @@ public async postListing(listing: Listing): Promise<void> {
       });
 }
 
-public async deleteListing(listing: Listing): Promise<void> {
+public async deleteListing(listing: iListing): Promise<void> {
     app.delete('/listing/:listing_id', async (req: Request, res: Response) => {
         try {
           const deletedListing = await Listing.findByIdAndDelete(req.params.id);
@@ -58,7 +63,7 @@ public async getListing(): Promise<Listing> {
         try {
           const listings = await Listing.find();
       
-          if (Listing.length === 0) {
+          if (listings.length === 0) {
             return res.status(404).json({ message: 'No listings found' });
           }
       

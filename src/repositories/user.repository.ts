@@ -1,8 +1,8 @@
 import { IUserRepository } from "../interfaces/user.interface";
 import express, { Request, Response } from 'express';
+import User from "../models/user.model"
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import User from './models/user';
 
 const app = express();
 
@@ -43,7 +43,7 @@ public async postUser(user: User): Promise<void> {
 public async deleteUser(user: User): Promise<void> {
   app.delete('/users/:id', async (req: Request, res: Response) => {
     try {
-      const deletedUser = await User.findByIdAndDelete(req.params.id);
+      const deletedUser = await user.findByIdAndDelete(req.params.id);
   
       if (!deletedUser) {
         return res.status(404).json({ message: 'User not found' });

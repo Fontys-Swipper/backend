@@ -20,9 +20,6 @@ const listingController = container.resolve(ListingController);
 const listingService = container.resolve(ListingService);
 const listingRepository = container.resolve(ListingRepository);
 
-
-
-
 //sign up (post)
 app.post("/signup", async (req: Request, res: Response) => {
   return await userController.postSignUpCredentials(req, res)
