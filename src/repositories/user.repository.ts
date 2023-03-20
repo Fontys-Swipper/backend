@@ -12,6 +12,10 @@ public async postSignUpCredentials(user: User): Promise<void> {
 public async postSignInCredentials(user: User): Promise<void> {
     
 }
+public async updateUser(user: User): Promise<void> {
 
-
+}
+public async deleteUser(user: User): Promise<void> {
+    
+}
 }

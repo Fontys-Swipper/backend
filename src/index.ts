@@ -55,9 +55,13 @@ app.get("/listing/get", async (req: Request, res: Response) => {
 
 
 //Update user profile (put)
-
+app.put("/user/update", async (req: Request, res: Response) => {
+  return await userController.updateUser(req, res)
+});
 //delete user profile (delete)
-
+app.delete("/user/delete", async (req: Request, res: Response) => {
+  return await userController.deleteUser(req, res)
+});
 
 
 

@@ -15,6 +15,8 @@ export class UserService implements IUserService {
   ) {
     this.postSignUpCredentials = this.postSignUpCredentials.bind(this);
     this.postSignInCredentials = this.postSignInCredentials.bind(this);
+    this.updateUser = this.updateUser.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
  public async postSignUpCredentials(user: User): Promise<void> {
@@ -25,8 +27,11 @@ export class UserService implements IUserService {
     
   }
 
+  public async updateUser(user: User): Promise<void> {
 
+  }
 
-
-
+  public async deleteUser(user: User): Promise<void> {
+    
+  }
 }

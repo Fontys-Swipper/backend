@@ -12,6 +12,8 @@ container.register("IUserService", {
     constructor(@inject("IUserService") private userService: UserService) {
         this.postSignUpCredentials = this.postSignUpCredentials.bind(this);
         this.postSignInCredentials = this.postSignInCredentials.bind(this);
+        this.updateUser = this.updateUser.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
 public async postSignUpCredentials(req: Request, res: Response): Promise<void> {
@@ -22,6 +24,12 @@ public async postSignInCredentials(req: Request, res: Response): Promise<void> {
 
 }
 
+public async updateUser(req: Request, res: Response): Promise<void> {
 
+}
+
+public async deleteUser(req: Request, res: Response): Promise<void> {
+  
+}
 
 }
