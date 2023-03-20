@@ -1,4 +1,4 @@
-import User from "../models/user.model";
+import { User }  from "../models/user.model";
 import express, { Request, Response } from "express";
 
 export interface IUserController {

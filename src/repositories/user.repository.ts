@@ -1,99 +1,60 @@
+import { NextFunction, Request, Response } from 'express';
+import {getManager} from "typeorm";
+import {Listing} from "../models/listing.model";
 import { IUserRepository } from "../interfaces/user.interface";
-import express, { Request, Response } from 'express';
-import User from "../models/user.model"
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-
-const app = express();
-
-mongoose
-  .connect('mongodb+srv://Backend:aTLOpFcGdeLuaRlG')
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error(err));
-
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-
-//const connectionString = "mongodb+srv://Backend:aTLOpFcGdeLuaRlG@<your-cluster-url>/test?retryWrites=true&w=majority";
+import { User } from '../models/user.model';
 
 export default class UserRepository implements IUserRepository {
-    constructor() {}
+    constructor() {
 
-
-public async postSignUpCredentials(user: User): Promise<void> {
-    
-}
-public async postSignInCredentials(user: User): Promise<void> {
-    
-}
-
-public async postUser(user: User): Promise<void> {
-  app.post('/users', async (req: Request, res: Response) => {
-    try {
-        const savedUser = await user.save();
-  
-      res.status(201).json(savedUser);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Server Error' });
     }
-  });
-}
 
-public async deleteUser(user: User): Promise<void> {
-  app.delete('/users/:id', async (req: Request, res: Response) => {
-    try {
-      const deletedUser = await user.findByIdAndDelete(req.params.id);
+    async postUser(request: Request, response: Response) {
+
+      const UserRepository = getManager().getRepository(User);
+      const newUser = UserRepository.create(request.body);
   
-      if (!deletedUser) {
-        return res.status(404).json({ message: 'User not found' });
+      await UserRepository.save(newUser);
+  
+      response.send(newUser);
+    }
+
+    async getUser(request: Request, response: Response) {
+
+      const UserRepository = getManager().getRepository(User);
+      const user = await UserRepository.findOneBy(request.params);
+  
+      // if post was not found return 404 to the client
+      if (!user) {
+          response.status(404);
+          response.end();
+          return;
       }
-  
-      res.status(200).json({ message: 'User deleted', deletedUser });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Server Error' });
-    }
-  });
+      response.send(user);
+  }
 }
 
-public async getUser(): Promise<User> {
-  app.get('/users', async (req: Request, res: Response) => {
-    try {
-      const users = await User.find();
-  
-      if (users.length === 0) {
-        return res.status(404).json({ message: 'No users found' });
-      }
-  
-      res.status(200).json(users);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Server Error' });
-    }
-  });
-    
+export async function postUser(request: Request, response: Response) {
+
+    const UserRepository = getManager().getRepository(User);
+    const newUser = UserRepository.create(request.body);
+
+    await UserRepository.save(newUser);
+
+    response.send(newUser);
 }
     
-public async updateUser(user: User): Promise<void> {
-  app.put('/users/:id', async (req: Request, res: Response) => {
-    try {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.params.id,
-        { username: req.body.username, password: req.body.password },
-        { new: true }
-      );
-  
-      if (!updatedUser) {
-        return res.status(404).json({ message: 'User not found' });
-      }
-  
-      res.status(200).json({ message: 'User updated', updatedUser });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Server Error' });
+export async function getUser(request: Request, response: Response) {
+
+    const UserRepository = getManager().getRepository(User);
+    const user = await UserRepository.findOneBy(request.params);
+
+    // if post was not found return 404 to the client
+    if (!user) {
+        response.status(404);
+        response.end();
+        return;
     }
-  });
+    response.send(user);
 }
 
-}

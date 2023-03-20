@@ -1,15 +1,21 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
-export interface Listing extends Document {
-    readonly listing_id: number;
+export interface Listing {
+    listing_id: number;
     animal_id: number;
     species_id: number;
+
 }
 
-const listingSchema: Schema = new mongoose.Schema({
-  listing_id: { type: Number, required: true },
-  animal_id: { type: Number, required: true },
-  species_id: { type: Number, required: true },
-});
+@Entity()
+export class Listing {
 
-export default mongoose.model<Listing>('Listing', listingSchema);
+    @PrimaryGeneratedColumn()
+    listing_id: number;
+
+    @Column()
+    animal_id: number;
+
+    @Column()
+    species_id: number;
+}

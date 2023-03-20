@@ -1,4 +1,4 @@
-import Listing  from "../models/listing.model";
+import { Listing }   from "../models/listing.model";
 import express, { Request, Response } from "express";
 
 export interface IListingController {
@@ -17,9 +17,7 @@ export interface IListingService {
 }
 
 export interface IListingRepository {
-    postListing(listing: Listing): Promise<void>;
-    deleteListing(listing: Listing): Promise<void>;
-    getListing(): Promise<Listing>;
-    updateListing(listing: Listing): Promise<void>;
+    postListing(req: Request, res: Response):void;
+    getListing(req: Request, res: Response):void;
 }
 

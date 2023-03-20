@@ -1,103 +1,39 @@
 import { IListingRepository } from "../interfaces/listing.interface";
-import { Document, Model } from 'mongoose';
-
-import IListing from "../models/listing.model";
-import express, { Request, Response } from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-
-
-const app = express();
-
-
-
-mongoose
-  .connect('mongodb+srv://Backend:aTLOpFcGdeLuaRlG')
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error(err));
-
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-  
+import { NextFunction, Request, Response } from 'express';
+import {getManager} from "typeorm";
+import {Listing} from "../models/listing.model";
+import { ParamsDictionary } from "express-serve-static-core";
+import { ParsedQs } from "qs";
 
 export default class ListingRepository implements IListingRepository {
     constructor() {
 
     }
 
+    async postListing(request: Request, response: Response) {
 
-
-public async postListing(listing: IListing): Promise<void> {
-    app.post('/listings', async (req: Request, res: Response) => {
-        try {
-            const savedListing = await listing.save();
-      
-          res.status(201).json(savedListing);
-        } catch (err) {
-          console.error(err);
-          res.status(500).json({ message: 'Server Error' });
-        }
-      });
-}
-
-public async deleteListing(listing: iListing): Promise<void> {
-    app.delete('/listing/:listing_id', async (req: Request, res: Response) => {
-        try {
-          const deletedListing = await Listing.findByIdAndDelete(req.params.id);
-      
-          if (!deletedListing) {
-            return res.status(404).json({ message: 'User not found' });
-          }
-      
-          res.status(200).json({ message: 'Listing deleted', deletedListing });
-        } catch (err) {
-          console.error(err);
-          res.status(500).json({ message: 'Server Error' });
-        }
-      });
-}
-
-
-public async getListing(): Promise<Listing> {
-    app.get('/listings', async (req: Request, res: Response) => {
-        try {
-          const listings = await Listing.find();
-      
-          if (listings.length === 0) {
-            return res.status(404).json({ message: 'No listings found' });
-          }
-      
-          res.status(200).json(listings);
-        } catch (err) {
-          console.error(err);
-          res.status(500).json({ message: 'Server Error' });
-        }
-      });    
-}
+        const listingRepository = getManager().getRepository(Listing);
+        const newPost = listingRepository.create(request.body);
     
-public async updateListing(listing: Listing): Promise<void> {
-    app.put('/listings/:listing_id', async (req: Request, res: Response) => {
-        try {
-          const updatedListing = await Listing.findByIdAndUpdate(
-            req.params.id,
-            //{ username: req.body.username, password: req.body.password },
-            { new: true }
-          );
-      
-          if (!updatedListing) {
-            return res.status(404).json({ message: 'Listing not found' });
-          }
-      
-          res.status(200).json({ message: 'Listing updated', updatedListing });
-        } catch (err) {
-          console.error(err);
-          res.status(500).json({ message: 'Server Error' });
+        await listingRepository.save(newPost);
+    
+        response.send(newPost);
+    }
+
+    async getListing(request: Request, response: Response) {
+
+        const listRepository = getManager().getRepository(Listing);
+        const listing = await listRepository.findOneBy({
+            listing_id: Number(request.params.id),
+        });
+    
+        // if post was not found return 404 to the client
+        if (!listing) {
+            response.status(404);
+            response.end();
+            return;
         }
-      });
+        response.send(listing);
+    }
 }
-
-}
-
-
-
 

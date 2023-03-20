@@ -1,5 +1,5 @@
 import "reflect-metadata";
- import express, { Request, Response } from "express";
+ import express, { Express, Request, Response } from "express";
 import { container } from "tsyringe";
 import { UserController } from "./controllers/user.controller";
 import UserRepository from "./repositories/user.repository";
@@ -7,10 +7,19 @@ import { UserService } from "./services/user.service";
 import { ListingController } from "./controllers/listing.controler";
 import { ListingService } from "./services/listing.service";
 import ListingRepository from "./repositories/listing.repository";
-const app = express();
+import mysql, { Connection, MysqlError } from 'mysql';
+
+
+const app: Express = express();
 app.use(express.json());
 
 
+//main function?
+//async function main() {
+//  await connectToMongodb();
+//  const app = new Applicaction();
+//  app.start();
+//}
 
 const userController = container.resolve(UserController);
 const userService = container.resolve(UserService);
