@@ -20,7 +20,19 @@ zorg dat je node.js hebt geinstalleerd OP JE LAPTOP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 of npm install
 
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+|												|
+|	hallo daar schattige douwdruppeltjes van me. Teun hier met een kleine toevoeging:	|
+|	(terminal)	npx tsc --init								|
+|	ditte ook ff doen anders werkt ie niet <3						|
+|	groetjes 										|
+|	•_•)											|
+|												|
+|	( •_•)>-■-■										|
+|												|
+|	(-■_■)											|
+|												|
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 in het bestand index.ts :  
 
