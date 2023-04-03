@@ -71,4 +71,5 @@ app.get("/home", (req: Request, res: Response ) => {
 
 
 // tells express that the api gets hosted on port 3001
-app.listen(3001, () => console.log("app listening on port 3001"));
+const port = process.env.PORT || 3001;
+app.listen(port, () => console.log(`app listening on port ${port}`));
