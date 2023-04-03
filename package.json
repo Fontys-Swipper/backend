@@ -26,7 +26,8 @@
     "mongoose": "^7.0.2",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^10.9.1",
-    "tsyringe": "^4.7.0"
+    "tsyringe": "^4.7.0",
+    "typeorm": "^0.3.12"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.2"

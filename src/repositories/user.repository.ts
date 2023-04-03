@@ -19,10 +19,14 @@ export default class UserRepository implements IUserRepository {
       response.send(newUser);
     }
 
+    
+
     async getUser(request: Request, response: Response) {
 
       const UserRepository = getManager().getRepository(User);
-      const user = await UserRepository.findOneBy(request.params);
+      const user = await UserRepository.findOneBy({
+        id: Number(request.params),
+      });
   
       // if post was not found return 404 to the client
       if (!user) {
@@ -32,29 +36,41 @@ export default class UserRepository implements IUserRepository {
       }
       response.send(user);
   }
-}
 
-export async function postUser(request: Request, response: Response) {
-
+  async updateUser(request: Request, response: Response) {
     const UserRepository = getManager().getRepository(User);
-    const newUser = UserRepository.create(request.body);
-
-    await UserRepository.save(newUser);
-
-    response.send(newUser);
-}
+    const { id } = request.params;
+    const user = await UserRepository.findOneBy({
+      id: Number(request.params),
+    });
     
-export async function getUser(request: Request, response: Response) {
-
-    const UserRepository = getManager().getRepository(User);
-    const user = await UserRepository.findOneBy(request.params);
-
-    // if post was not found return 404 to the client
     if (!user) {
-        response.status(404);
-        response.end();
-        return;
+      response.status(404);
+      response.end();
+      return;
     }
-    response.send(user);
-}
+    
+    UserRepository.merge(user, request.body);
+    const updatedUser = await UserRepository.save(user);
+    
+    response.send(updatedUser);
+  }
 
+  async deleteUser(request: Request, response: Response) {
+    const UserRepository = getManager().getRepository(User);
+    const { id } = request.params;
+    const user = await UserRepository.findOneBy({
+      id: Number(request.params),
+    });
+    
+    if (!user) {
+      response.status(404);
+      response.end();
+      return;
+    }
+    
+    await UserRepository.remove(user);
+    
+    response.send(user);
+  }
+}

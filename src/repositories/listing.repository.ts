@@ -33,7 +33,6 @@ export default class ListingRepository implements IListingRepository {
 
 <<<<<<< Updated upstream
     async postListing(request: Request, response: Response) {
-
         const listingRepository = getManager().getRepository(Listing);
         const newPost = listingRepository.create(request.body);
     
@@ -57,6 +56,45 @@ export default class ListingRepository implements IListingRepository {
         }
         response.send(listing);
     }
+
+    async updateListing(request: Request, response: Response) {
+        const listingRepository = getManager().getRepository(Listing);
+        const { id } = request.params;
+        const listing = await listingRepository.findOneBy({
+            listing_id: Number(request.params.id),
+        });
+    
+        
+        if (!listing) {
+          response.status(404);
+          response.end();
+          return;
+        }
+        
+        listingRepository.merge(listing, request.body);
+        const updatedListing = await listingRepository.save(listing);
+        
+        response.send(updatedListing);
+      }
+      
+      async deleteListing(request: Request, response: Response) {
+        const listingRepository = getManager().getRepository(Listing);
+        const { id } = request.params;
+        const listing = await listingRepository.findOneBy({
+            listing_id: Number(request.params.id),
+        });
+    
+        
+        if (!listing) {
+          response.status(404);
+          response.end();
+          return;
+        }
+        
+        await listingRepository.remove(listing);
+        
+        response.send(listing);
+      }
 }
 
 =======

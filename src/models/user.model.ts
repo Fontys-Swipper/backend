@@ -1,5 +1,21 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from "typeorm";
 
+export interface User {
+    id: number;
+    username: string;
+    firstname: string;
+    lastname: string;
+    email: string;
+    password: string;
+    address: string;
+    living_space: string;
+    description: string;
+
+    company_name: string;
+    has_pet: boolean;
+    has_garden: boolean;
+}
+
 @Entity()
 export class User {
 
@@ -34,10 +50,8 @@ export class User {
     company_name: string;
 
     @Column()
-    has_pet: string;
+    has_pet: boolean;
 
     @Column()
-    has_garden: string;
-
-
+    has_garden: boolean;
 }

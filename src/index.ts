@@ -4,10 +4,9 @@ import { container } from "tsyringe";
 import { UserController } from "./controllers/user.controller";
 import UserRepository from "./repositories/user.repository";
 import { UserService } from "./services/user.service";
-import { ListingController } from "./controllers/listing.controler";
+import { ListingController } from "./controllers/listing.controller";
 import { ListingService } from "./services/listing.service";
 import ListingRepository from "./repositories/listing.repository";
-import mysql, { Connection, MysqlError } from 'mysql';
 
 
 const app: Express = express();
