@@ -33,11 +33,11 @@ const listingRepository = container.resolve(ListingRepository);
 app.post("/signup", async (req: Request, res: Response) => {
   return await userController.postSignUpCredentials(req, res)
 });
+
 //login (post)
 app.post("/login", async (req: Request, res: Response) => {
   return await userController.postSignInCredentials(req, res)
 });
-
 
 app.post("/listing/post", async (req: Request, res: Response) => {
   return await listingController.postListing(req, res)
@@ -56,9 +56,6 @@ app.get("/listing/get", async (req: Request, res: Response) => {
 });
 
 //favorite list (post)
-
-
-
 
 //Update user profile (put)
 

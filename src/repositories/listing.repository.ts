@@ -1,15 +1,37 @@
 import { IListingRepository } from "../interfaces/listing.interface";
+<<<<<<< Updated upstream
 import { NextFunction, Request, Response } from 'express';
 import {getManager} from "typeorm";
 import {Listing} from "../models/listing.model";
 import { ParamsDictionary } from "express-serve-static-core";
 import { ParsedQs } from "qs";
+=======
+import { Document, Model } from "mongoose";
+
+import { Listing } from "../models/listing.model";
+import express, { Request, Response } from "express";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
+
+const app = express();
+
+mongoose
+  .connect("mongodb+srv://Backend:aTLOpFcGdeLuaRlG")
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error(err));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+>>>>>>> Stashed changes
 
 export default class ListingRepository implements IListingRepository {
-    constructor() {
+  constructor() {}
 
-    }
+  public async postListing(listing: Listing): Promise<void> {
+    const savedListing = await listing.save();
+  }
 
+<<<<<<< Updated upstream
     async postListing(request: Request, response: Response) {
 
         const listingRepository = getManager().getRepository(Listing);
@@ -37,3 +59,25 @@ export default class ListingRepository implements IListingRepository {
     }
 }
 
+=======
+  public async deleteListing(listing: Listing): Promise<void> {
+         const deletedListing = await listing.deleteOne(listing.id);
+
+   }
+
+  public async getListing(id: number, listing: Listing): Promise<Listing> {
+         const listings = await listing.find(id);
+         return listings;
+
+   }
+
+  public async updateListing(listing: Listing): Promise<void> {
+         const updatedListing = await listing.findByIdAndUpdate(
+          listing.id,
+          //{ username: req.body.username, password: req.body.password },
+          { new: true }
+        );
+    
+  }
+}
+>>>>>>> Stashed changes

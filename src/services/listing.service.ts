@@ -1,6 +1,6 @@
 import { container, inject, injectable } from "tsyringe";
 import { IListingRepository, IListingService } from "../interfaces/listing.interface";
-import Listing from "../models/listing.model";
+import   { Listing } from "../models/listing.model";
 import ListingRepository from "../repositories/listing.repository";
 
 
