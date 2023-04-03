@@ -64,9 +64,8 @@ app.delete("/user/delete", async (req: Request, res: Response) => {
 
 
 
-// makes a "/home" route that sends "This is an api route" to the browser
-app.get("/home", (req: Request, res: Response ) => {
-  res.status(200).send("<h1>This is a api route</h1>");
+app.get("/", (req: Request, res: Response) => {
+    res.status(200).send("<h1>Welcome to the API for Swipper!</h1>");
 });
 
 
