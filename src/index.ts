@@ -32,7 +32,6 @@ app.post("/login", async (req: Request, res: Response) => {
   return await userController.postSignInCredentials(req, res)
 });
 
-
 app.post("/listing/post", async (req: Request, res: Response) => {
   return await listingController.postListing(req, res)
 });

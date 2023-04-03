@@ -42,6 +42,6 @@ export class ListingController implements IListingController {
   }
 
   public async updateListing(req: Request, res: Response): Promise<void> {
-    
+
   }
 }

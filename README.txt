@@ -1,5 +1,7 @@
 API setup
 
+{deze tekst is om te proberen naar de azure service te pushen}
+
 zorg dat je node.js hebt geinstalleerd OP JE LAPTOP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 (terminal)	npm init -y
@@ -34,7 +36,7 @@ of npm install
 |												|
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-in het bestand index.ts :  
+in het bestand index.ts :
 
 
 
