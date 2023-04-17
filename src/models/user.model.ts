@@ -20,38 +20,38 @@ export interface User {
 export class User {
 
     @PrimaryGeneratedColumn()
-    id!: number;
+    id: number;
 
     @Column()
-    username!: string;
+    username: string;
 
     @Column()
-    firstname!: string;
+    firstname: string;
 
     @Column()
-    lastname!: string;
+    lastname: string;
     
     @Column()
-    email!: string;
+    email: string;
 
     @Column()
-    password!: string;
+    password: string;
 
     @Column()
-    address!: string;
+    address: string;
 
     @Column()
-    living_space!: string;
+    living_space: string;
 
     @Column()
-    description!: string;
+    description: string;
 
     @Column()
-    company_name!: string;
+    company_name: string;
 
     @Column()
-    has_pet!: boolean;
+    has_pet: boolean;
 
     @Column()
-    has_garden!: boolean;
+    has_garden: boolean;
 }
