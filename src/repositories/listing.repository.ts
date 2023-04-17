@@ -71,6 +71,11 @@ export default class ListingRepository implements IListingRepository {
         
         response.send(updatedListing);
       }
+    
+      async mergeListings(params1: any, params2: any): Promise<any> {
+        const mergedListing = { ...params1, ...params2 };
+        return mergedListing;
+      }
       
       
 }

@@ -3,6 +3,7 @@ import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 export interface Listing {
     listing_id: number;
     animal_name: string;
+    animal_species: string;
     animal_image_link?: string;   
     animal_good_with_children?: number;   
     animal_good_with_other_dogs?: number;   
@@ -26,7 +27,6 @@ export interface Listing {
     animal_min_height_female?: number;   
     animal_min_weight_male?: number;   
     animal_min_weight_female?: number;   
-    animal_species: string;
 }
 
 @Entity()
