@@ -1,5 +1,6 @@
 import "reflect-metadata";
- import express, { Request, Response } from "express";
+import express, { Request, Response } from "express";
+import { createConnections } from 'typeorm';
 import { container } from "tsyringe";
 import { UserController } from "./controllers/user.controller";
 import UserRepository from "./repositories/user.repository";
@@ -20,7 +21,11 @@ const listingController = container.resolve(ListingController);
 const listingService = container.resolve(ListingService);
 const listingRepository = container.resolve(ListingRepository);
 
-
+createConnections().then(connections => {
+  // connections are now established
+}).catch(error => {
+  // error connecting to the databases
+});
 
 
 //sign up (post)
