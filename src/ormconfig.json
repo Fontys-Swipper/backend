@@ -1,5 +1,5 @@
 {
-    "type": "mysql",
+    "type": "sql.js",
     "host": "localhost",
     "port": 3306,
     "username": "your-username",
